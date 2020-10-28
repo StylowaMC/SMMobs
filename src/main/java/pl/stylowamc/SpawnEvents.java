@@ -5,10 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EnderDragon;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Wither;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -43,8 +40,9 @@ public class SpawnEvents implements Listener {
     }
     @EventHandler
     public void WitherKill2(EntityDamageByEntityEvent e){
-        Player p = (Player)e.getDamager();
+
         if(e.getDamager() instanceof Player){
+            Player p = (Player)e.getDamager();
             //Bukkit.broadcastMessage("jestes graczem");
             if(e.getEntity() instanceof Wither){
                 //Bukkit.broadcastMessage("Bijesz withera i jestes graczem");
@@ -61,8 +59,8 @@ public class SpawnEvents implements Listener {
     }
     @EventHandler
     public void DragonKill2(EntityDamageByEntityEvent e){
-        Player p = (Player)e.getDamager();
         if(e.getDamager() instanceof Player){
+            Player p = (Player)e.getDamager();
             //Bukkit.broadcastMessage("jestes graczem");
             if(e.getEntity() instanceof EnderDragon){
                 //Bukkit.broadcastMessage("Bijesz smoka i jestes graczem");
