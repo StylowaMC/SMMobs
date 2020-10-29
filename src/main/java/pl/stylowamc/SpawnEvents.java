@@ -119,7 +119,7 @@ public class SpawnEvents implements Listener {
         if(itemStack.getType().equals(Material.ENCHANTED_BOOK)){
             EnchantmentStorageMeta meta = (EnchantmentStorageMeta) itemStack.getItemMeta();
             if(meta.hasStoredEnchant(Enchantment.MENDING)){
-                e.getCaught().remove();
+                item.remove();
             }
         }
     }
