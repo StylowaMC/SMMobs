@@ -20,6 +20,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class SpawnEvents implements Listener {
 
@@ -108,17 +109,22 @@ public class SpawnEvents implements Listener {
 
     @EventHandler
     public void FishingReplacement(PlayerFishEvent e){
-        if(e.getCaught() != null) {
-            Item item = (Item) e.getCaught();
 
-            ItemStack itemStack = item.getItemStack();
+        if(!e.isCancelled()) {
+            try {
 
-            if (itemStack.getType().equals(Material.ENCHANTED_BOOK)) {
-                EnchantmentStorageMeta meta = (EnchantmentStorageMeta) itemStack.getItemMeta();
-                assert meta != null;
-                if (meta.hasStoredEnchant(Enchantment.MENDING)) {
-                    item.remove();
+                ItemStack i = (ItemStack) e.getCaught();
+
+
+                if (i.getType().equals(Material.ENCHANTED_BOOK)) {
+                    EnchantmentStorageMeta meta = (EnchantmentStorageMeta) itemStack.getItemMeta();
+                    assert meta != null;
+                    if (meta.hasStoredEnchant(Enchantment.MENDING)) {
+                        item.remove();
+                    }
                 }
+            } catch (NullPointerException ex){
+                return;
             }
         }
     }
