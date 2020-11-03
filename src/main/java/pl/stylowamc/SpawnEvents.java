@@ -55,7 +55,7 @@ public class SpawnEvents implements Listener {
     @EventHandler
     public void WitherKill(EntityDeathEvent e){
         if(e.getEntityType() == EntityType.WITHER){
-            Bukkit.broadcastMessage(ChatColor.BLUE+""+ChatColor.BOLD+WitherKillers.values().toString()+" zabili Withera!");
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "essentials:broadcast "+ ChatColor.BLUE+""+ChatColor.BOLD+WitherKillers.values().toString()+" zabili Withera!");
             WitherKillers.clear();
         }
     }
@@ -73,7 +73,7 @@ public class SpawnEvents implements Listener {
     @EventHandler
     public void DragonKill(EntityDeathEvent e){
         if(e.getEntityType() == EntityType.ENDER_DRAGON){
-            Bukkit.broadcastMessage(ChatColor.BLUE+""+ChatColor.BOLD+DragonKillers.values().toString()+" zabili EnderDragona!");
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "essentials:broadcast "+ ChatColor.BLUE+""+ChatColor.BOLD+DragonKillers.values().toString()+" zabili EnderDragona!");
             DragonKillers.clear();
         }
     }
@@ -117,10 +117,10 @@ public class SpawnEvents implements Listener {
 
 
                 if (i.getType().equals(Material.ENCHANTED_BOOK)) {
-                    EnchantmentStorageMeta meta = (EnchantmentStorageMeta) itemStack.getItemMeta();
+                    EnchantmentStorageMeta meta = (EnchantmentStorageMeta) i.getItemMeta();
                     assert meta != null;
                     if (meta.hasStoredEnchant(Enchantment.MENDING)) {
-                        item.remove();
+                        e.getCaught().remove();
                     }
                 }
             } catch (NullPointerException ex){
